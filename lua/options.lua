@@ -66,4 +66,13 @@ vim.opt.scrolloff = 10
 -- See `:help 'confirm'`
 vim.opt.confirm = true
 
+vim.opt.mousemoveevent = true
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  group = vim.api.nvim_create_augroup('NeotreeOnNewTab', { clear = true }),
+  callback = vim.schedule_wrap(function()
+    vim.cmd 'Neotree show'
+  end),
+})
+
 -- vim: ts=2 sts=2 sw=2 et
