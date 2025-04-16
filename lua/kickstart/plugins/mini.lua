@@ -33,7 +33,9 @@ return {
       end
 
       -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
+      --  Check out: https://github.com/echasnovski/mini.nvi
+
+      require('mini.comment').setup()
     end,
   },
 }
