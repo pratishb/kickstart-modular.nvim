@@ -28,8 +28,7 @@ return {
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
       -- Not sure why this is not working with Hack font, but for now enabled = true works fine
-      --{ 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
-      { 'nvim-tree/nvim-web-devicons', enabled = true },
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
