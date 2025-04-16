@@ -52,6 +52,17 @@ return {
     --opts = {
     --},
     config = function()
+      -- Open the tree automatically with NeoVim, unless opening a specific file
+      vim.api.nvim_create_autocmd('VimEnter', {
+        pattern = '*',
+        group = vim.api.nvim_create_augroup('NeotreeOnOpen', { clear = true }),
+        once = true,
+        callback = vim.schedule_wrap(function()
+          if vim.fn.argc() == 0 then
+            vim.cmd 'Neotree show'
+          end
+        end),
+      })
       -- If you want icons for diagnostic errors, you'll need to define them somewhere.
       -- In Neovim v0.10+, you can configure them in vim.diagnostic.config(), like:
       --
@@ -71,7 +82,6 @@ return {
       -- vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
       -- vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
       -- vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
-
       require('neo-tree').setup {
         close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
         popup_border_style = 'rounded',

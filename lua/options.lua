@@ -66,13 +66,11 @@ vim.opt.scrolloff = 10
 -- See `:help 'confirm'`
 vim.opt.confirm = true
 
+-- Required for enabling on-hover events for Bufferline plugin
 vim.opt.mousemoveevent = true
 
-vim.api.nvim_create_autocmd('VimEnter', {
-  group = vim.api.nvim_create_augroup('NeotreeOnNewTab', { clear = true }),
-  callback = vim.schedule_wrap(function()
-    vim.cmd 'Neotree show'
-  end),
-})
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.cmd [[ set nofoldenable]]
 
 -- vim: ts=2 sts=2 sw=2 et
