@@ -36,6 +36,14 @@ return {
       --  Check out: https://github.com/echasnovski/mini.nvi
 
       require('mini.comment').setup()
+
+      require('mini.indentscope').setup {
+        -- Draw options
+        draw = {
+          delay = 50,
+        }, -- Which character to use for drawing scope indicator
+        symbol = '|',
+      }
     end,
   },
 }
