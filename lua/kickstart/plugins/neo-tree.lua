@@ -31,7 +31,8 @@ return {
     },
     cmd = 'Neotree',
     keys = {
-      { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+      { '\\', ':Neotree toggle<CR>', desc = 'NeoTree Toggle', silent = true },
+      { '|', ':Neotree reveal<CR>', desc = 'NeoTree Reveal', silent = true },
     },
     lazy = false,
     config = function()
