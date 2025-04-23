@@ -15,7 +15,7 @@ return {
     'rcarriga/nvim-dap-ui',
 
     -- Required dependency for nvim-dap-ui
-    'nvim-neonvim-spectre/nvim-nio',
+    'nvim-neotest/nvim-nio',
 
     -- Installs the debug adapters for you
     'williamboman/mason.nvim',
@@ -95,6 +95,42 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+      },
+    }
+
+    dap.configurations.cs = {
+      {
+        type = 'coreclr',
+        name = 'launch - netcoredbg',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/net9.0/', 'file')
+        end,
+      },
+    }
+
+    dap.configurations.python = {
+      {
+        -- The first three options are required by nvim-dap
+        type = 'python', -- the type here established the link to the adapter definition: `dap.adapters.python`
+        request = 'launch',
+        name = 'Launch file',
+        cwd = '/', --python is executed from this directory
+
+        program = '${file}', -- This configuration will launch the current file if used.
+        pythonPath = function()
+          -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
+          -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
+          -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
+          local cwd = vim.fn.getcwd()
+          if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
+            return cwd .. '/venv/bin/python'
+          elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
+            return cwd .. '/.venv/bin/python'
+          else
+            return '/usr/bin/python'
+          end
+        end,
       },
     }
 
