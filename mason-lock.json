@@ -1,0 +1,9 @@
+{
+  "debugpy": "1.8.14",
+  "delve": "v1.24.2",
+  "lua-language-server": "3.14.0",
+  "netcoredbg": "3.1.2-1054",
+  "python-lsp-server": "1.12.2",
+  "roslyn": "5.0.0-1.25228.17",
+  "stylua": "v2.1.0"
+}
