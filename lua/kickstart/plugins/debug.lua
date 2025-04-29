@@ -86,11 +86,11 @@ return {
     vim.api.nvim_set_hl(0, 'blue', { fg = '#8aadf4' })
     vim.api.nvim_set_hl(0, 'orange', { fg = '#f09000' })
 
-    vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'red', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
-    vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'red', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+    vim.fn.sign_define('DapBreakpoint', { text = '●', texthl = 'red', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+    vim.fn.sign_define('DapBreakpointCondition', { text = '⊜', texthl = 'red', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
     vim.fn.sign_define('DapLogPoint', { text = '', texthl = 'blue', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
     vim.fn.sign_define('DapStopped', { text = '', texthl = 'green', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
-    vim.fn.sign_define('DapBreakpointRejected', { text = '', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+    vim.fn.sign_define('DapBreakpointRejected', { text = '⊘', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
