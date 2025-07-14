@@ -70,6 +70,24 @@ return {
               vim.opt.guicursor:remove 'a:Cursor/lCursor'
             end,
           },
+          {
+            event = 'neo_tree_popup_buffer_leave',
+            handler = function()
+              local hl = vim.api.nvim_get_hl(0, { name = 'Cursor' })
+              hl.blend = 100
+              vim.api.nvim_set_hl(0, 'Cursor', hl)
+              vim.opt.guicursor:append 'a:Cursor/lCursor'
+            end,
+          },
+          {
+            event = 'neo_tree_popup_buffer_enter',
+            handler = function()
+              local hl = vim.api.nvim_get_hl(0, { name = 'Cursor' })
+              hl.blend = 0
+              vim.api.nvim_set_hl(0, 'Cursor', hl)
+              vim.opt.guicursor:remove 'a:Cursor/lCursor'
+            end,
+          },
         },
         popup_border_style = 'rounded',
       }
