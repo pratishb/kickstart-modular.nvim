@@ -25,5 +25,10 @@ return {
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+  {
+    'OXY2DEV/markview.nvim',
+    -- Ensure markview is not handled explicitly by the start plugin logic:
+    lazy = true,
+  },
 }
 -- vim: ts=2 sts=2 sw=2 et
