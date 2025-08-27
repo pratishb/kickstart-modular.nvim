@@ -1,14 +1,23 @@
 return {
-    {
-        'rmagatti/auto-session',
-        lazy = false,
-      
-        ---enables autocomplete for opts
-        ---@module "auto-session"
-        ---@type AutoSession.Config
-        opts = {
-          suppressed_dirs = {  },
-          -- log_level = 'debug',
-        }
-      }
+  {
+    'rmagatti/auto-session',
+    lazy = false,
+    keys = {
+      -- Will use Telescope if installed or a vim.ui.select picker otherwise
+      { '<leader>wr', '<cmd>SessionSearch<CR>', desc = 'Session search' },
+      { '<leader>ws', '<cmd>SessionSave<CR>', desc = 'Save session' },
+      { '<leader>wa', '<cmd>SessionToggleAutoSave<CR>', desc = 'Toggle autosave' },
+    },
+
+    ---enables autocomplete for opts
+    ---@module "auto-session"
+    ---@type AutoSession.Config
+    opts = {
+      suppressed_dirs = {},
+      -- log_level = 'debug',
+      auto_save = true, -- Enables/disables auto saving session on exit
+      auto_restore = false, -- Enables/disables auto restoring session on start
+      auto_create = false,
+    },
+  },
 }
