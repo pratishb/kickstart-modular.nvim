@@ -228,6 +228,73 @@ return {
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
         --
+        -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+        -- capabilities.textDocument.completion.completionItem.snippetSupport = true
+        html = {
+          cmd = { 'vscode-html-language-server', '--stdio' },
+          filetypes = { 'html' },
+          init_options = {
+            configurationSection = { 'html', 'css', 'javascript' },
+            embeddedLanguages = {
+              css = true,
+              javascript = true,
+            },
+            provideFormatter = true,
+          },
+          settings = {},
+          single_file_support = true,
+        },
+
+        cssls = {
+          cmd = { 'vscode-css-language-server', '--stdio' },
+          filetypes = { 'css', 'scss', 'less' },
+          root_dir = function(fname)
+            return require('lspconfig').util.root_pattern(fname) or vim.loop.os_homedir()
+          end,
+          settings = {
+            css = {
+              validate = true,
+            },
+            less = {
+              validate = true,
+            },
+            scss = {
+              validate = true,
+            },
+          },
+        },
+
+        jsonls = {
+          cmd = { 'vscode-json-language-server', '--stdio' },
+          filetypes = { 'json' },
+          init_options = {
+            provideFormatter = true,
+          },
+          root_dir = function(startpath)
+            return M.search_ancestors(startpath, matcher)
+          end,
+        },
+
+        eslint = {
+          cmd = { 'vscode-eslint-language-server', '--stdio' }, -- Command to start the server
+          filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' }, -- Supported file types
+          root_dir = require('lspconfig').util.root_pattern('.eslintrc', '.eslintrc.js', '.eslintrc.json', 'package.json'), -- Root directory detection
+          settings = {
+            -- ESLint specific settings
+            format = { enable = true }, -- Enable formatting
+            validate = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' }, -- Validate these languages
+          },
+        },
+
+        ts_ls = {
+          cmd = { 'typescript-language-server', '--stdio' },
+          single_file_support = true,
+          filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+          root_dir = function(fname)
+            return require('lspconfig').util.root_pattern 'tsconfig.json'(fname)
+              or require('lspconfig').util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
+          end,
+        },
 
         lua_ls = {
           -- cmd = { ... },
