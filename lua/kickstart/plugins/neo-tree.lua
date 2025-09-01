@@ -42,8 +42,13 @@ return {
         group = vim.api.nvim_create_augroup('NeotreeOnOpen', { clear = true }),
         once = true,
         callback = vim.schedule_wrap(function()
+          local ft = vim.opt_local.filetype:get()
           if vim.fn.argc() == 0 then
-            vim.cmd 'Neotree show'
+            if ft == 'man' then
+              vim.notify('MAN', vim.log.levels.ERROR)
+            else
+              vim.cmd 'Neotree show'
+            end
           end
         end),
       })
