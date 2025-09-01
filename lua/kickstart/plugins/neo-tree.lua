@@ -44,9 +44,7 @@ return {
         callback = vim.schedule_wrap(function()
           local ft = vim.opt_local.filetype:get()
           if vim.fn.argc() == 0 then
-            if ft == 'man' then
-              vim.notify('MAN', vim.log.levels.ERROR)
-            else
+            if not (ft == 'man') then
               vim.cmd 'Neotree show'
             end
           end
