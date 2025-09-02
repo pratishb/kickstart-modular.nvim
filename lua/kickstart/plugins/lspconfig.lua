@@ -296,6 +296,12 @@ return {
           end,
         },
 
+        -- Syntax below does not work. Mason cannot ensure install, and subsequently fails to call qmlls.setup()
+        -- qmlls = {
+        --   cmd = { 'qmlls' },
+        --   filetypes = { 'qmljs', 'qml' },
+        -- },
+
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -312,6 +318,13 @@ return {
         },
       }
 
+      -- Workaround for qmlls not working with Mason for the list above.
+      require('lspconfig').qmlls.setup {
+        capabilities = capabilities,
+        cmd = { 'qmlls6' },
+        filetypes = { 'qml', 'qmljs' },
+      }
+
       -- Ensure the servers and tools above are installed
       --
       -- To check the current status of installed tools and/or manually install
@@ -326,9 +339,11 @@ return {
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
+
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
       })
+
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
