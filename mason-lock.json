@@ -1,13 +1,13 @@
 {
   "css-lsp": "4.10.0",
   "debugpy": "1.8.16",
-  "delve": "v1.24.2",
+  "delve": "v1.25.2",
   "eslint-lsp": "4.10.0",
   "html-lsp": "4.10.0",
   "json-lsp": "4.10.0",
   "lua-language-server": "3.15.0",
   "netcoredbg": "3.1.2-1054",
-  "pyright": "1.1.404",
+  "pyright": "1.1.405",
   "roslyn": "5.0.0-2.25424.1",
   "stylua": "v2.1.0",
   "typescript-language-server": "4.4.0"
