@@ -318,13 +318,6 @@ return {
         },
       }
 
-      -- Workaround for qmlls not working with Mason for the list above.
-      require('lspconfig').qmlls.setup {
-        capabilities = capabilities,
-        cmd = { 'qmlls6' },
-        filetypes = { 'qml', 'qmljs' },
-      }
-
       -- Ensure the servers and tools above are installed
       --
       -- To check the current status of installed tools and/or manually install
